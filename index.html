@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/shape.js"></script>
+    <script>
+            window.onload=function(){
+                var canvas=document.querySelector("canvas");
+                var cobj=canvas.getContext("2d");
+                var obj=new shape(canvas,cobj);
+                obj.draw();
+               var zt=$(".xiantiao li");
+                for (var i=0;i<zt.length;i++){
+                    zt[i].onclick=function(){
+                        obj.type=this.getAttribute("data-role");
+                    }
+                }
+                $(".tc li").on("click",function(){
+                    obj.style=this.getAttribute("data-role");
+                });
+                $(".xk input").on("change",function(){
+                    obj.lineWidth=this.value;
+                });
+                $(".xys input").on("change",function(){
+                    obj.strokeStyle=this.value;
+                });
+                $(".tcs input").on("change",function(){
+                    obj.fillStyle=this.value;
+                });
+            }
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width:100%;
+            height:631px;
+            position: relative;
+            overflow: hidden;
+        }
+        .box .one img{
+            width:1349px;
+            height:631px;
+            z-index:999;
+        }
+        canvas{
+            position: absolute;
+            top:56px;
+            left:179px;
+            background: #fff;
+            animation:cc 5s;
+            opacity: 1;
+        }
+        .ks{
+            position: absolute;
+            top:0;left: 0;bottom: 0;right: 0;margin: auto;
+            width:160px;
+            height:160px;
+            border-radius: 50%;
+            overflow: hidden;
+            opacity: 0;
+        }
+        .ks img{
+            width:160px;
+            height:160px;
+        }
+        .chulai{
+            animation:aa 5s;
+            opacity: 1;
+        }
+        .huiqv{
+            animation:bb 2s;
+            opacity: 0;
+        }
+        .huihua{
+            display: none;
+        }
+        .huihua1{
+            width:800px;
+            height:450px;
+            position: absolute;
+            top:-1000px;left: 0;bottom: 0;right: 0;margin: auto;
+            text-align: center;
+            line-height: 1450px;
+            animation:dd 2s;
+            display: block;
+            opacity: 0;
+        }
+        @keyframes aa {
+            0%   {opacity:0;transform:rotate(0deg)}
+            100% {opacity:1;transform:rotate(7200deg)}
+        }
+        @keyframes bb {
+            0%   {opacity:1;transform:rotate(0deg)}
+            100% {opacity:1;transform:rotate(-360deg);
+                position: absolute;
+                top:-900px;left:0;bottom: 0;right: 0;margin: auto;}
+        }
+        @keyframes cc {
+             0%   {opacity:0;transform:rotate(0deg)}
+             100% {opacity:1;transform:rotate(-720deg)}
+         }
+        @keyframes dd {
+            0%   {opacity:1;font-size: 30px;}
+            100% {opacity:0;font-size: 120px;}
+        }
+        .xiantiao{
+            width:100px;
+            height:25px;
+            position: absolute;
+            top:20px;
+            left:20px;
+            border: 1px solid #666;
+            font-size: 10px;
+        }
+        .tc{
+            width:100px;
+            height:25px;
+            position: absolute;
+            top:50px;
+            left:20px;
+            border: 1px solid #666;
+            font-size: 10px;
+        }
+        .tc li{
+            display: block;
+            width:20px;
+            height:20px;
+            background: #aaaaaa;
+            float: left;
+            margin-left: 10px;
+            line-height: 20px;
+            text-align: center;
+            margin-top: 3px;
+            color:yellow;
+        }
+        .xiantiao li{
+            display: block;
+            width:20px;
+            height:20px;
+            background: #aaaaaa;
+            float: left;
+            margin-left: 10px;
+            line-height: 20px;
+            text-align: center;
+            margin-top: 3px;
+            color:#000;
+        }
+        .xk{
+            position: absolute;
+            top: 79px;
+            left:0;
+            color: #fff;
+            font-size: 11px;
+        }
+        .xys{
+            position: absolute;
+            top: 120px;
+            left:0;
+            color: #fff;
+            font-size: 11px;
+        }
+        .tcs{
+            position: absolute;
+            top: 160px;
+            left:0;
+            color: #fff;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="one">
+            <img src="img/1.jpg" alt="">
+        </div>
+    </div>
+<canvas width="1000px" height="450px">
+    您的浏览器不支持画布
+</canvas>
+<div class="ks">
+    <img src="img/2.jpg" alt="">
+</div>
+<div class="huihua">
+    开始绘画啦
+</div>
+<div class="xiantiao">
+    <li data-role="line">直线</li>
+    <li data-role="rect">矩形</li>
+    <li data-role="arc">圆</li>
+</div>
+<div class="xk">线宽:
+    <input type="range" max=10 min=0 step=1 value=1>
+</div>
+<div class="tc">
+    <li data-role="fill">填充</li>
+    <li data-role="stroke">线性</li>
+</div>
+    <div class="xys">线颜色：
+        <input type="color">
+    </div>
+    <div class="tcs">填充色：
+        <input type="color">
+    </div>
+</body>
+</html>
